@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="col-md-6 mx-auto mt-3">
+
+    	<h1>Registration Form</h1>
+    	{% if error %}
+		    <p class=text-danger><strong>Error:</strong> {{ error }} </p>
+		{% endif %}
+    	<form method="POST">
+		{{form.hidden_tag()}}
+		<div class="form-group">
+			{{form.email.label(class='form-group')}}
+			{{form.email(class='form-control')}}
+			{% if form.password.email  %}
+
+		    {% for error in form.password.email %}
+		      <p class="text-danger">{{ error }}</p>
+		    {% endfor %}
+
+			{% endif %}
+		</div>
+
+		<div class="form-group">
+			{{form.username.label(class='form-group')}}
+			{{form.username(class='form-control')}}
+			{% if form.password.username %}
+
+		    {% for error in form.password.username %}
+		      <p class="text-danger">{{ error }}</p>
+		    {% endfor %}
+
+			{% endif %}
+		</div>
+
+		<div class="form-group">
+			{{form.password.label(class='form-group')}}
+			{{form.password(class='form-control')}}
+
+			{% if form.password.errors %}
+
+		    {% for error in form.password.errors %}
+		      <p class="text-danger">{{ error }}</p>
+		    {% endfor %}
+
+			{% endif %}
+		</div>
+		<div class="form-group">
+			{{form.pass_confirm.label(class='form-group')}}
+			{{form.pass_confirm(class='form-control')}}
+		</div>
+
+		<div class="form-group">
+			{{form.submit(class='btn btn-dark btn-block')}}
+		</div>
+
+		</form>
+    </div>
+{% endblock content %}
